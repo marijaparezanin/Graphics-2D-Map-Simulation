@@ -5,6 +5,10 @@
 #include "../Header/OverlayDraw.h"
 #include "../Header/Util.h" // for createShader
 
+// Local shader + GL objects used to draw simple overlay geometry in pixel coords.
+// We reuse the same text shaders ("text.vert"/"text.frag") which provide a
+// uResolution uniform and uColor (vec4) uniform expected below.
+
 static GLuint overlayProg = 0;
 static GLuint overlayVAO = 0;
 static GLuint overlayVBO = 0;

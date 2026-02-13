@@ -4,6 +4,11 @@ void drawRect(unsigned int rectShader, unsigned int VAOrect);
 void drawMap(unsigned int rectShader, unsigned int VAOmap);
 void drawStandinMan(unsigned int rectShader, unsigned int VAOstandingMan);
 
+// Draw the 3D map plane. Caller provides the map shader program and the VAO created by formMapVAO.
+// drawMap3D will bind the map texture (texture unit 0) and draw the plane.
+// The caller should set uM/uV/uP and uTexOffset/uTexScale on the provided shader before calling.
+void drawMap3D(unsigned int mapShader, unsigned int VAOmap);
+
 // Draw top-left pin. You can supply both VAOs: VAOtopPin (normal) and VAOtopPinWide (wider).
 // VAOtopPinWide is optional (default 0) — if 0, the normal VAO is used.
 void drawTopPin(unsigned int rectShader, unsigned int VAOtopPin, unsigned int VAOtopPinWide = 0);

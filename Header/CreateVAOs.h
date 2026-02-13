@@ -15,3 +15,6 @@ void formTopPinVAO(unsigned int& VAOtopPin, float marginPx = 8.0f);
 
 // Create a VAO for a wider top-left icon (used for standing-man appearance)
 void formTopPinWideVAO(unsigned int& VAOtopPinWide, float marginPx = 8.0f);
+
+// Convenience: create all VAOs used by the app (wrapper used by Main.cpp)
+void formAllVAOs();

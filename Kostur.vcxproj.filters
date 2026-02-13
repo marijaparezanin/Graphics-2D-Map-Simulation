@@ -39,6 +39,18 @@
     <ClCompile Include="Source\Globals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Measurement3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SupermanGlobals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\stb_image.h">
@@ -68,6 +80,21 @@
     <ClInclude Include="Header\Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header\model.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\mesh.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\shader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Measurement3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\SupermanGlobals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -89,6 +116,15 @@
     <None Include="text.vert">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="map3d.vert" />
+    <None Include="map3d.frag" />
+    <None Include="Resources\superman.glb">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="basic.vert" />
+    <None Include="basic.frag" />
+    <None Include="measurement3d.vert" />
+    <None Include="measurement3d.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\compass-icon-left.png">

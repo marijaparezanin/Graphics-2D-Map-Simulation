@@ -15,6 +15,7 @@ extern unsigned standingManTextureRight;
 extern unsigned standingManTextureRightAlt;
 extern unsigned standingManTextureLeft;
 extern unsigned standingManTextureLeftAlt;
+// up/down frames
 extern unsigned standingManTextureUp;
 extern unsigned standingManTextureUpAlt;
 extern unsigned standingManTextureDown;
@@ -60,11 +61,29 @@ void drawRect(unsigned int rectShader, unsigned int VAOrect) {
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4); // Crtaju se trouglovi tako da formiraju četvorougao
 }
 
+// Legacy 2D fullscreen map draw (keeps compatibility with any code still calling drawMap)
 void drawMap(unsigned int rectShader, unsigned int VAOmap) {
     setupShader(rectShader, 0, 0.0f, 0.0f, 1.0f, fullOpacity, mapOffsetX, mapOffsetY, mapTexScale);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, mapTexture);
+    glBindVertexArray(VAOmap);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+}
+
+// New: draw the 3D map plane. Caller must set uM/uV/uP and uTexOffset/uTexScale before calling.
+// This function binds the map texture and issues the draw call.
+void drawMap3D(unsigned int mapShader, unsigned int VAOmap) {
+    glUseProgram(mapShader);
+    // ensure the shader samples texture unit 0
+    glUniform1i(glGetUniformLocation(mapShader, "uTex0"), 0);
+    // texture pan/scale uniforms may already be set by caller; setting again is harmless
+    glUniform2f(glGetUniformLocation(mapShader, "uTexOffset"), mapOffsetX, mapOffsetY);
+    glUniform1f(glGetUniformLocation(mapShader, "uTexScale"), mapTexScale);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, mapTexture);
+
     glBindVertexArray(VAOmap);
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
@@ -92,7 +111,7 @@ void drawStandinMan(unsigned int rectShader, unsigned int VAOstandingMan) {
         if (standingManAnimFrame == 0) glBindTexture(GL_TEXTURE_2D, standingManTextureDown);
         else                           glBindTexture(GL_TEXTURE_2D, standingManTextureDownAlt);
     } else {
-        glBindTexture(GL_TEXTURE_2D, standingManTexture); // default
+        glBindTexture(GL_TEXTURE_2D, standingManTexture); // default/idle
     }
 
     glBindVertexArray(VAOstandingMan);
